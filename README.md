@@ -23,6 +23,14 @@ docker run -p 3000:3000 my-node-app
 ### Access the Application
 - Open a browser and navigate to `http://localhost:3000`.
 
+## Expected Behavior
+
+- When the container runs, the application should start successfully and log:
+
+- Server is running on port 3000
+
+- Accessing http://localhost:3000 should return a response (e.g., Hello, World! or JSON output).
+
 ## Assumptions
 - The application entry point is `server.js`.
 - `package.json` and `package-lock.json` exist in the project root.
