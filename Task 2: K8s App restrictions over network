@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-app-network-policy
+  namespace: default  # Considered the default namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: my-app-deployment  # Make sure this matches the labels of my-app-deployment pods
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector: {}  # Allows traffic from any pod within the same namespace
+        - podSelector:
+            matchLabels:
+              app: trusted  # Allows traffic from the pod labeled as app=trusted
+  egress:
+    - to:
+        - podSelector: {}  # Allows traffic to any pod within the same namespace
+
+
+#Since the task requires targeting my-app-deployment, I need to match its pod labels. But it not confirm which label need to used. For now, I assume app=my-app-deployment as a standard naming convention.
